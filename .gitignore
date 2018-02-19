@@ -100,4 +100,6 @@ ENV/
 
 # mypy
 .mypy_cache/
-*.jpg
+
+# Data
+not-cat/data/images

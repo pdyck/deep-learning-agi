@@ -2,14 +2,16 @@ import requests
 import cv2
 import os
 from time import sleep
+import numpy as np
 
 def download(urls, categories):
     for url, category in zip(urls, categories):
         image_urls = get_image_list(url)
-        create_dir_if_not_exist(category)
+        dirname = 'images/category'
+        create_dir_if_not_exist(dirname)
         for index, image_url in enumerate(image_urls):
-            download_image(image_url, category + '/' + str(index) + '.jpg')
-        check_images(category)
+            download_image(image_url, dirname + '/' + str(index) + '.jpg')
+        check_images(dirname)
 
 def get_image_list(url):
     text = requests.get(url).text
@@ -30,11 +32,14 @@ def download_image(url, path):
     f.close()
 
 def check_images(dir):
+    invalid = cv2.imread('invalid/flickr.jpg')
     for image_path in [dir + '/' + f for f in os.listdir(dir)]:
         delete = False
         try:
             image = cv2.imread(image_path)
             if image is None:
+                delete = True
+            if invalid.shape == image.shape and not(np.bitwise_xor(invalid, image).any()):
                 delete = True
         except:
             delete = True

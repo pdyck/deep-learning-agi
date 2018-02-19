@@ -1,5 +1,5 @@
 from lenet import LeNet
-from data import get_data
+from data.get_data import get_data
 
 epochs = 25
 lr = 1e-3
