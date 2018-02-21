@@ -14,7 +14,7 @@ def get_data():
     data = []
     labels = []
 
-    image_paths = glob.glob('images/*/*.jpg')
+    image_paths = glob.glob('data/images/*/*.jpg')
     random.shuffle(image_paths)
 
     for image_path in image_paths:

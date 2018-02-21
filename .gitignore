@@ -103,3 +103,4 @@ ENV/
 
 # Data
 not-cat/data/images
+*.h5
