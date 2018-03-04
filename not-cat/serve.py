@@ -23,12 +23,14 @@ def predict():
     not_cat = prediction[0][0]
     cat = prediction[0][1]
 
-    img_tag = '<img src="' + url + '">'
+    img_tag = '<img width="500" src="' + url + '">'
 
     if cat > not_cat:
         percentage = str(round(cat * 100, 2)) + '% Katze'
     else:
         percentage = str(round(not_cat * 100, 2)) + '% keine Katze'
+
+    percentage = '<h1>' + percentage + '</h1>'
 
     return img_tag + percentage
 
